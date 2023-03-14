@@ -29,8 +29,17 @@ function draw() {
   verificaColisaoBorda();
   mostraRaquete1();
   mostraRaquete2();
+  movimentaRaquete1();
 }
 
+function movimentaRaquete1(){
+  if (keyIsDown(UP_ARROW)){
+    yRaquete1 -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)){
+    yRaquete1 += 10;
+  } 
+}
 function mostraRaquete1(){
   rect(xRaquete1,yRaquete1,raquete1Comprimento,raquete1Altura);
 }
