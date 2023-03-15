@@ -30,16 +30,9 @@ function draw() {
   mostraRaquete1();
   mostraRaquete2();
   movimentaRaquete1();
+  verificaColisaoRaquete1();
 }
 
-function movimentaRaquete1(){
-  if (keyIsDown(UP_ARROW)){
-    yRaquete1 -= 10;
-  }
-  if (keyIsDown(DOWN_ARROW)){
-    yRaquete1 += 10;
-  } 
-}
 function mostraRaquete1(){
   rect(xRaquete1,yRaquete1,raquete1Comprimento,raquete1Altura);
 }
@@ -59,5 +52,20 @@ function verificaColisaoBorda(){
   }
   if ((yBolinha + raio) > height || (yBolinha - raio) < 0){
     velocidadeYBolinha *= -1;
+  }
+}
+function movimentaRaquete1(){
+  if (keyIsDown(UP_ARROW)){
+    yRaquete1 -= 10;
+  }
+  if (keyIsDown(DOWN_ARROW)){
+    yRaquete1 += 10;
+  } 
+}
+function verificaColisaoRaquete1() {
+  if (xBolinha - raio < (xRaquete1 + raquete1Comprimento)
+      && yBolinha - raio < (yRaquete1 + raquete1Altura)
+      && yBolinha + raio > yRaquete1) {
+      velocidadeXBolinha *= -1;
   }
 }
