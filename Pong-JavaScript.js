@@ -6,19 +6,20 @@ let raio = diametro / 2;
 let velocidadeXBolinha = 6;
 let velocidadeYBolinha = 6;
 
+//variáveis gerais raquete
+let raqueteComprimento = 10;
+let raqueteAltura = 90;
+
 //variáveis da raquete 1 (ESQUERDA)
 let xRaquete1 = 5;
 let yRaquete1 = 5;
-let raquete1Comprimento = 10;
-let raquete1Altura = 90;
 
 let colidiu1 = false;
 
 //variáveis da raquete 2 (DIREITA)
 let xRaquete2 = 585;
 let yRaquete2 = 305;
-let raquete2Comprimento = 10;
-let raquete2Altura = 90;
+let velocidadeYRaquete2;
 
 let colidiu2 = false;
 
@@ -31,18 +32,16 @@ function draw() {
   mostraBolinha();
   movimentaBolinha();
   verificaColisaoBorda();
-  mostraRaquete1();
-  mostraRaquete2();
+  mostraRaquete(xRaquete1,yRaquete1);
+  mostraRaquete(xRaquete2,yRaquete2);
   movimentaRaquete1();
+  movimentaRaquete2();
   //verificaColisaoRaquete1();
   colisaoRaquete1Biblioteca();
 }
 
-function mostraRaquete1(){
-  rect(xRaquete1,yRaquete1,raquete1Comprimento,raquete1Altura);
-}
-function mostraRaquete2(){
-  rect(xRaquete2,yRaquete2,raquete2Comprimento,raquete2Altura);
+function mostraRaquete(x,y){
+  rect(x,y,raqueteComprimento,raqueteAltura);
 }
 function mostraBolinha(){
   circle(xBolinha, yBolinha, diametro);
@@ -68,15 +67,19 @@ function movimentaRaquete1(){
   } 
 }
 function verificaColisaoRaquete1() {
-  if (xBolinha - raio < (xRaquete1 + raquete1Comprimento)
-      && yBolinha - raio < (yRaquete1 + raquete1Altura)
+  if (xBolinha - raio < (xRaquete1 + raqueteComprimento)
+      && yBolinha - raio < (yRaquete1 + raqueteAltura)
       && yBolinha + raio > yRaquete1) {
       velocidadeXBolinha *= -1;
   }
 }
 function colisaoRaquete1Biblioteca(){
-  colidiu1 = collideRectCircle(xRaquete1,yRaquete1,raquete1Comprimento,raquete1Altura,xBolinha,yBolinha,raio);
+  colidiu1 = collideRectCircle(xRaquete1,yRaquete1,raqueteComprimento,raqueteAltura,xBolinha,yBolinha,raio);
   if (colidiu1){
     velocidadeXBolinha *= -1;
   }
+}
+function movimentaRaquete2(){
+  velocidadeYRaquete2 =  yBolinha - yRaquete2 - raqueteComprimento / 2 - 30;
+  yRaquete2 += velocidadeYRaquete2;
 }
