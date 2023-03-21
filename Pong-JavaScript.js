@@ -92,8 +92,19 @@ function movimentaRaquete1(){
   } 
 }
 function movimentaRaquete2(){
+  // UTILIZAR CÓDIGO CASO UTILIZE OPONENTE IA
+
   velocidadeYRaquete2 =  yBolinha - yRaquete2 - raqueteComprimento / 2 - 30;
   yRaquete2 += velocidadeYRaquete2;
+  // UTILIZAR CÓDIGO CASO UTILIZE OUTRO PLAYER
+  /*
+  if (keyIsDown(87)){
+    yRaquete2 -= 10;
+  }
+  if (keyIsDown(83)){
+    yRaquete2 += 10;
+  }
+  */
 }
 function verificaColisaoRaquete(x,y){
   colidiu = collideRectCircle(x,y,raqueteComprimento,raqueteAltura,xBolinha,yBolinha,raio);
