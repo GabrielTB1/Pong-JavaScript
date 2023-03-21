@@ -50,9 +50,14 @@ function mostraBolinha(){
   circle(xBolinha, yBolinha, diametro);
 }
 function mostraPlacar(){
+  textAlign(CENTER);
+  textSize(16);
+  fill(color(255,140,0));
+  rect(230,10,40,20);
+  rect(330,10,40,20);
   fill(255);
-  text(meusPontos, 280,26);
-  text(oponentePontos, 320, 26);
+  text(meusPontos,250,26);
+  text(oponentePontos,350, 26);
 }
 function movimentaBolinha(){
   xBolinha += velocidadeXBolinha;
