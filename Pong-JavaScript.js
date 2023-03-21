@@ -6,6 +6,10 @@ let raio = diametro / 2;
 let velocidadeXBolinha = 6;
 let velocidadeYBolinha = 6;
 
+//variáveis de placar do jogo
+let meusPontos = 0;
+let oponentePontos = 0;
+
 //variáveis gerais raquete
 let raqueteComprimento = 10;
 let raqueteAltura = 90;
@@ -35,6 +39,8 @@ function draw() {
   movimentaRaquete2();
   verificaColisaoRaquete(xRaquete1,yRaquete1);
   verificaColisaoRaquete(xRaquete2,yRaquete2);
+  mostraPlacar();
+  marcaPonto();
 }
 
 function mostraRaquete(x,y){
@@ -42,6 +48,11 @@ function mostraRaquete(x,y){
 }
 function mostraBolinha(){
   circle(xBolinha, yBolinha, diametro);
+}
+function mostraPlacar(){
+  fill(255);
+  text(meusPontos, 280,26);
+  text(oponentePontos, 320, 26);
 }
 function movimentaBolinha(){
   xBolinha += velocidadeXBolinha;
@@ -71,5 +82,13 @@ function verificaColisaoRaquete(x,y){
   colidiu = collideRectCircle(x,y,raqueteComprimento,raqueteAltura,xBolinha,yBolinha,raio);
   if (colidiu){
     velocidadeXBolinha *= -1;
+  }
+}
+function marcaPonto(){
+  if (xBolinha > 590){
+    meusPontos += 1;
+  }
+  if (xBolinha < 10){
+    oponentePontos += 1;
   }
 }
