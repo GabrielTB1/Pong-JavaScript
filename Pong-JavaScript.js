@@ -28,6 +28,7 @@ let yRaquete1 = 5;
 let xRaquete2 = 585;
 let yRaquete2 = 305;
 let velocidadeYRaquete2;
+let chanceDeErrar = 0;
 
 function preload(){
   trilha = loadSound("sounds/trilha.mp3");
@@ -92,10 +93,11 @@ function movimentaRaquete1(){
   } 
 }
 function movimentaRaquete2(){
-  // UTILIZAR CÓDIGO CASO UTILIZE OPONENTE IA
+  // UTILIZAR CÓDIGO CASO UTILIZE OPONENTE COMPUTADOR
 
-  velocidadeYRaquete2 =  yBolinha - yRaquete2 - raqueteComprimento / 2 - 30;
-  yRaquete2 += velocidadeYRaquete2;
+  velocidadeYRaquete2 =  yBolinha - yRaquete2 - raqueteComprimento / 2 - 20;
+  yRaquete2 += velocidadeYRaquete2 + chanceDeErrar;
+  calculaChanceDeErrar();
   // UTILIZAR CÓDIGO CASO UTILIZE OUTRO PLAYER
   /*
   if (keyIsDown(87)){
@@ -121,5 +123,18 @@ function marcaPonto(){
   if (xBolinha < 10){
     oponentePontos += 1;
     ponto.play();
+  }
+}
+function calculaChanceDeErrar() {
+  if (oponentePontos >= meusPontos) {
+    chanceDeErrar += 1
+    if (chanceDeErrar >= 39){
+    chanceDeErrar = 40
+    }
+  } else {
+    chanceDeErrar -= 1
+    if (chanceDeErrar <= 35){
+    chanceDeErrar = 35
+    }
   }
 }
