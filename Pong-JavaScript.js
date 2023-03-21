@@ -6,6 +6,11 @@ let raio = diametro / 2;
 let velocidadeXBolinha = 6;
 let velocidadeYBolinha = 6;
 
+//sons do jogo
+let raquetada;
+let ponto;
+let trilha;
+
 //variáveis de placar do jogo
 let meusPontos = 0;
 let oponentePontos = 0;
@@ -24,8 +29,15 @@ let xRaquete2 = 585;
 let yRaquete2 = 305;
 let velocidadeYRaquete2;
 
+function preload(){
+  trilha = loadSound("sounds/trilha.mp3");
+  ponto = loadSound("sounds/ponto.mp3");
+  raquetada = loadSound("sounds/raquetada.mp3");
+}
+
 function setup() {
   createCanvas(600, 400);
+  trilha.loop();
 }
 
 function draw() {
@@ -87,13 +99,16 @@ function verificaColisaoRaquete(x,y){
   colidiu = collideRectCircle(x,y,raqueteComprimento,raqueteAltura,xBolinha,yBolinha,raio);
   if (colidiu){
     velocidadeXBolinha *= -1;
+    raquetada.play();
   }
 }
 function marcaPonto(){
   if (xBolinha > 590){
     meusPontos += 1;
+    ponto.play();
   }
   if (xBolinha < 10){
     oponentePontos += 1;
+    ponto.play();
   }
 }
